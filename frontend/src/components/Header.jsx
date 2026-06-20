@@ -1,8 +1,31 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logoImg from "../assets/logo.png";
+import socket from "../services/socket";
 
 export default function Header() {
   const location = useLocation();
+  const [isConnected, setIsConnected] = useState(socket.connected);
+
+  useEffect(() => {
+    function onConnect() {
+      setIsConnected(true);
+    }
+    function onDisconnect() {
+      setIsConnected(false);
+    }
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+
+    // Sync initial state
+    setIsConnected(socket.connected);
+
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+    };
+  }, []);
 
   return (
     <header className="bg-slate-950 border-b border-slate-800 shadow-xl">
@@ -37,12 +60,18 @@ export default function Header() {
 
           {/* Live Status */}
 
-          <div className="flex items-center gap-2 bg-green-500/15 border border-green-500/30 text-green-400 px-4 py-2 rounded-full">
+          <div className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 ${
+            isConnected
+              ? "bg-green-500/15 border-green-500/30 text-green-400"
+              : "bg-red-500/15 border-red-500/30 text-red-400"
+          }`}>
 
-            <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+            <span className={`w-2.5 h-2.5 rounded-full ${
+              isConnected ? "bg-green-400 animate-pulse" : "bg-red-400"
+            }`}></span>
 
             <span className="font-medium">
-              Live Sync Active
+              {isConnected ? "Live Sync Active" : "Disconnected"}
             </span>
 
           </div>

@@ -38,7 +38,7 @@ Traditional outpatient clinics in India face major operational challenges:
 * **Frontend**: React (Vite), React Router, Tailwind CSS, Socket.IO-Client
 * **Backend**: Node.js, Express, Socket.IO
 * **Database**: Supabase (PostgreSQL)
-* **Deployment**: Netlify / Vercel (Frontend), Render / Railway (Backend)
+* **Deployment**: Vercel (Frontend), Render (Backend)
 
 ---
 

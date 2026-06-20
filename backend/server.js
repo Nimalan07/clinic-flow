@@ -18,6 +18,10 @@ express();
 
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.json({ status: "ClinicFlow Backend is active and running." });
+});
+
 const server =
 http.createServer(app);
 

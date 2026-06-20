@@ -55,7 +55,7 @@ The system uses a Supabase PostgreSQL backend database. Below is the structure o
 | `joined_at` | `timestamp` | Time when the patient was registered. Defaults to database current time. |
 | `start_time` | `timestamp` | Timestamp when the receptionist clicked "Call Next" (started consultation). |
 | `end_time` | `timestamp` | Timestamp when the next patient was called (ended consultation). |
-| `consultation_duration` | `integer` | Calculated duration in minutes: $\text{end\_time} - \text{start\_time}$. |
+| `consultation_duration` | `integer` | Calculated duration in minutes (end_time - start_time) . |
 
 ---
 

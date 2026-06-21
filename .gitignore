@@ -31,3 +31,7 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary Case Study & Screenshots
+docs/case_study.html
+frontend/src/assets/Screenshot*
